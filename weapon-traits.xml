@@ -1,0 +1,8 @@
+<traits>
+    <trait name="Accurate" />
+    <trait name="Anti-Tank" />
+    <trait name="Assault" />
+    <trait name="Ignores Cover" />
+    <trait name="Light" />
+    <trait name="Light AT" />
+</traits>

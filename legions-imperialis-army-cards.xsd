@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="army" type="armyType">
+        <xs:key name="PKWeaponTrait">
+            <xs:selector xpath="traits/trait" />
+            <xs:field xpath="@name" />
+        </xs:key>
+
+        <xs:keyref name="FKWeaponTrait" refer="PKWeaponTrait">
+            <xs:selector xpath="weapons/weapon/traits/trait" />
+            <xs:field xpath="@name" />
+        </xs:keyref>
+
+        <xs:key name="PKWeapon">
+            <xs:selector xpath="weapons/weapon" />
+            <xs:field xpath="@name" />
+        </xs:key>
+
+        <xs:keyref name="FKUnitWeapon" refer="PKWeapon">
+            <xs:selector xpath="units/unit/weapons/weapon" />
+            <xs:field xpath="@name" />
+        </xs:keyref>
+    </xs:element>
+
+    <xs:complexType name="armyType">
+        <xs:sequence>
+            <xs:element name="units" type="unitsType" />
+            <xs:element name="weapons" type="weaponsType" />
+            <xs:element name="formations" type="formationsType" />
+            <xs:element name="traits" type="traitsType" />
+        </xs:sequence>
+
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="unitType">
+        <xs:sequence>
+            <xs:element name="move" type="xs:string" />
+            <xs:element name="save" type="xs:string" />
+            <xs:element name="caf" type="xs:string" />
+            <xs:element name="morale" type="xs:string" />
+            <xs:element name="wounds" type="xs:string" />
+            <xs:element name="weapons" type="unitWeaponsType" />
+        </xs:sequence>
+
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="unitsType">
+        <xs:sequence>
+            <xs:element name="unit" type="unitType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="unitWeaponType">
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="unitWeaponsType">
+        <xs:sequence>
+            <xs:element name="weapon" type="unitWeaponType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="weaponType">
+        <xs:sequence>
+            <xs:element name="range" type="xs:string" />
+            <xs:element name="dice" type="xs:string" />
+            <xs:element name="tohit" type="xs:string" />
+            <xs:element name="ap" type="xs:string" />
+            <xs:element name="traits" type="weaponTraitsType" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="weaponsType">
+        <xs:sequence>
+            <xs:element name="weapon" type="weaponType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="weaponTraitsType">
+        <xs:sequence>
+            <xs:element name="trait" type="weaponTraitType" maxOccurs="unbounded" /> 
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="weaponTraitType">
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="traitsType">
+        <xs:sequence>
+            <xs:element name="trait" type="traitType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="traitType">
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:simpleType name="detachmentType" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Air Support" />
+            <xs:enumeration value="Artillery" />
+            <xs:enumeration value="Bastion" />
+            <xs:enumeration value="Battle Tank" />
+            <xs:enumeration value="Core" />
+            <xs:enumeration value="Heavy Armour" />
+            <xs:enumeration value="HQ" />
+            <xs:enumeration value="Knight" />
+            <xs:enumeration value="Light Armour" />
+            <xs:enumeration value="Support" />
+            <xs:enumeration value="Titan" />
+            <xs:enumeration value="Transport" />
+            <xs:enumeration value="Vanguard" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="detachmentSlotType">
+        <xs:attribute name="type" type="detachmentType" />
+    </xs:complexType>
+
+    <xs:complexType name="detachmentGroupType">
+        <xs:sequence>
+            <xs:element name="detachment" type="detachmentSlotType" maxOccurs="unbounded" />
+            <xs:element name="detachmentChoice" type="detachmentGroupType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="formationType">
+        <xs:sequence>
+            <xs:element name="compulsory" type="detachmentGroupType" />
+            <xs:element name="optional" type="detachmentGroupType" />
+            <xs:element name="rule" type="formationRule" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="formationsType">
+        <xs:sequence>
+            <xs:element name="formation" type="formationType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="formationRule">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="name" type="xs:string" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="detachments">
+        <xs:sequence>
+            <xs:element name="detachment" type="detachment" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="detachment">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="type" type="xs:string" />
+        <xs:attribute name="cost" type="xs:int" />
+        <xs:attribute name="size" type="xs:int" />
+        <xs:attribute name="unitType" type="xs:string" />
+        <xs:attribute name="unitSize" type="xs:int" />
+    </xs:complexType>
+</xs:schema>

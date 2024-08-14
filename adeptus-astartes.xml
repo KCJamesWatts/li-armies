@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE doc [
+    <!ENTITY weapon-traits-file SYSTEM "weapon-traits.xml">
+]>
+
+<?xml-stylesheet type="text/xsl" href="army-list.xsl"?>
+
+<army name="Adeptus Astartes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:noNamespaceSchemaLocation="legions-imperialis-army-cards.xsd">
+
+    <units>
+        <unit name="Tactical Legionnaries">
+            <move>5"</move>
+            <save>5+</save>
+            <caf>+2</caf>
+            <morale>3+</morale>
+            <wounds>1</wounds>
+            <weapons>
+                <weapon name="Bolter" />
+            </weapons>
+        </unit>
+
+        <unit name="Missile Launcher Heavy Support Legionnaries">
+            <move>5"</move>
+            <save>5+</save>
+            <caf>+2</caf>
+            <morale>3+</morale>
+            <wounds>1</wounds>
+            <weapons>
+                <weapon name="Missile Launcher (Frag)" />
+                <weapon name="Missile Launcher (Krak)" />
+            </weapons>
+        </unit>
+
+        <unit name="Plasma Tactical Support Legionnaries">
+            <move>5"</move>
+            <save>5+</save>
+            <caf>+2</caf>
+            <morale>3+</morale>
+            <wounds>1</wounds>
+            <weapons>
+                <weapon name="Plasma Gun" />
+            </weapons>
+        </unit>
+
+        <unit name="Assault Marines">
+            <move>7"</move>
+            <save>5+</save>
+            <caf>+3</caf>
+            <morale>3+</morale>
+            <wounds>1</wounds>
+            <weapons>
+                <weapon name="Bolt Pistol" />
+            </weapons>
+        </unit>
+
+        <unit name="Legion Terminators">
+            <move>5"</move>
+            <save>4+</save>
+            <caf>+4</caf>
+            <morale>3+</morale>
+            <wounds>1</wounds>
+            <weapons>
+                <weapon name="Combi-Bolter" />
+            </weapons>
+        </unit>
+    </units>
+
+    <weapons>
+        <weapon name="Bolter">
+            <range>8"</range>
+            <dice>1</dice>
+            <tohit>5+</tohit>
+            <ap>0</ap>
+            <traits>
+                <trait name="Assault" />
+                <trait name="Light" />
+            </traits>
+        </weapon>
+
+        <weapon name="Bolt Pistol">
+            <range>6"</range>
+            <dice>1</dice>
+            <tohit>5+</tohit>
+            <ap>0</ap>
+            <traits>
+                <trait name="Light" />
+            </traits>
+        </weapon>
+
+        <weapon name="Combi-Bolter">
+            <range>8"</range>
+            <dice>1</dice>
+            <tohit>5+</tohit>
+            <ap>0</ap>
+            <traits>
+                <trait name="Accurate" />
+                <trait name="Assault" />
+                <trait name="Light" />
+            </traits>
+        </weapon>
+
+        <weapon name="Missile Launcher (Frag)">
+            <range>20"</range>
+            <dice>2</dice>
+            <tohit>4+</tohit>
+            <ap>0</ap>
+            <traits>
+                <trait name="Ignores Cover" />
+                <trait name="Light" />
+            </traits>
+        </weapon>
+
+        <weapon name="Missile Launcher (Krak)">
+            <range>20"</range>
+            <dice>1</dice>
+            <tohit>4+</tohit>
+            <ap>-1</ap>
+            <traits>
+                <trait name="Anti-Tank" />
+            </traits>
+        </weapon>
+
+        <weapon name="Plasma Gun">
+            <range>10"</range>
+            <dice>1</dice>
+            <tohit>4+</tohit>
+            <ap>-1</ap>
+            <traits>
+                <trait name="Light AT" />
+            </traits>
+        </weapon>
+    </weapons>
+
+    <formations>
+        <formation name="Legion Ariel Assault">
+            <compulsory>
+                <detachment type="HQ" />
+                <detachment type="Support" />
+                <detachment type="Core" />
+                <detachment type="Core" />
+            </compulsory>
+
+            <optional>
+                <detachment type="Support" />
+                <detachment type="Core" />
+                <detachment type="Air Support" />
+                <detachment type="Support" />
+                <detachment type="Vanguard" />
+                <detachment type="Air Support" />
+            </optional>
+
+            <rule name="Dedicated Transports">
+                Any Legiones Astrates Detachment within a Legion Arial Assault Formation can be upgraded with Legion Storm Eagles
+                or Legion Thunderhawks as Dedicated Transports, at a cost of +100 points per Storm Eagle and +150 points per
+                Legion Thunderhawk.
+            </rule>
+
+            <rule name="Aerial Assault">
+                All Detachments within the Formation that do not have the Flyer special rule must begin the game Embarked upon a Transport
+                with the Flyer special rule.
+            </rule>
+        </formation>
+
+        <formation name="Legion Armoured Company">
+            <compulsory>
+                <detachment type="Battle Tank" />
+                <detachment type="Battle Tank" />
+                <detachment type="Heavy Armour" />
+            </compulsory>
+
+            <optional>
+                <detachment type="Light Armour" />
+                <detachment type="Heavy Armour" />
+                <detachment type="Battle Tank" />
+                <detachment type="Battle Tank" />
+
+                <detachmentChoice>
+                    <detachment type="Air Support" />
+                    <detachment type="Heavy Armour" />
+                </detachmentChoice>
+            </optional>
+        </formation>
+
+        <formation name="Legion Demi-Company">
+            <compulsory>
+                <detachment type="HQ" />
+                <detachment type="Support" />
+                <detachment type="Core" />
+                <detachment type="Core" />
+            </compulsory>
+
+            <optional>
+                <detachment type="Bastion" />
+                <detachment type="Core" />
+                <detachment type="Transport" />
+                <detachment type="Transport" />
+                <detachment type="Support" />
+                <detachment type="Support" />
+                <detachment type="Vanguard" />
+
+                <detachmentChoice>
+                    <detachment type="Light Armour" />
+                    <detachment type="Air Support" />
+                </detachmentChoice>
+
+                <detachmentChoice>
+                    <detachment type="Artillery" />
+                    <detachment type="Battle Tank" />
+                    <detachment type="Heavy Armour" />
+                </detachmentChoice>
+            </optional>
+
+            <rule name="Dedicated Transports">
+                Any Legiones Astrates Detachment within the Formation that contains only Infantry models may be
+                upgraded with Legions Rhinos as Dedicated Transports.
+            </rule>
+
+            <rule name="Heart of the Legion">
+                Compulsory Core Detachment slots in this formation must be filled with Legion Tactical Detachments.
+                All non-infantry models within this formation increase their Tactical Strength by 1 when contesting
+                an Objective marker that an infantry model within this Formation is also contesting.
+            </rule>
+        </formation>
+
+        <formation name="Legion Garrison Force">
+            <compulsory>
+                <detachment type="HQ" />
+                <detachment type="Support" />
+                <detachment type="Core" />
+                <detachment type="Bastion" />
+            </compulsory>
+
+            <optional>
+                <detachment type="Bastion" />
+                <detachment type="Core" />
+                <detachment type="Air Support" />
+                <detachment type="Bastion" />
+                <detachment type="Support" />
+                <detachment type="Support" />
+                <detachment type="Artillery" />
+
+                <detachmentChoice>
+                    <detachment type="Heavy Armour" />
+                    <detachment type="Artillery" />                    
+                </detachmentChoice>
+            </optional>
+        </formation>
+    </formations>
+
+    <detachments>
+        <detachment name="Legion Tactical Detachment" type="Core" cost="35" size="4" unitType="Infantry" unitSize="1">
+            <unit name="Tactical Legionnaries" />
+
+            <upgrades allowed="4">
+                <upgrade cost="12" size="2" name="Tactical Legionnaries">
+                    <unit name="Tactical Legionnaries" />
+                </upgrade>
+
+                <upgrade cost="15" size="2" name="Plasma Tactical Support Legionnaries">
+                    <unit name="Plasma Tactical Support Legionnaries" />
+                </upgrade>
+
+                <upgrade cost="15" size="2" name="Missile Launcher Heavy Support Legionnaries">
+                    <unit name="Missile Launcher Heavy Support Legionnaries" />
+                </upgrade>
+
+                <upgrade cost="15" size="2" name="Legion Terminators">
+                    <unit name="Legion Terminators" />
+                </upgrade>
+
+                <upgrade cost="12" size="2" name="Assault Marines">
+                    <unit name="Assault Marines" />
+                </upgrade>
+            </upgrades>
+        </detachment>
+    </detachments>
+
+    &weapon-traits-file;
+</army>
